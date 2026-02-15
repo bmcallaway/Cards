@@ -13,6 +13,7 @@ public class CardsApplication {
         mainDeck.shuffle();
         mainDeck.shuffle();
 
+
         Table t1 = new Table();
         t1.deck.shuffle();
         t1.deck.shuffle();
@@ -21,7 +22,9 @@ public class CardsApplication {
         t1.addPlayer(p1);
         t1.addPlayer(p2);
         t1.deal();
-        t1.players.get(0).showCard();
+        for(Player p : t1.players){
+            p.showCard();
+        }
 
     }
 
