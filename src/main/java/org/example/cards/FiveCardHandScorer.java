@@ -13,6 +13,7 @@ public class FiveCardHandScorer {
 
     public FiveCardHandScorer(Card[] cards){
         this.cards = cards;
+
         ranks = new Integer[cards.length];
         rankCount = new HashMap<>();
         rankGroups = new ArrayList<>();

@@ -17,10 +17,14 @@ public class Hand {
     public void addCard(Card card){
         if(size < 2){
             cards[size] = card;
+            size++;
         }
     }
     public Card[] getCards(){
         return cards;
     }
 
+    public int size() {
+        return size;
+    }
 }

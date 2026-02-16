@@ -1,33 +1,47 @@
 package org.example.cards;
 
+import static org.example.cards.HandRankerUtil.bestFiveCardHandOfSeven;
+
 public final class MonteCarloUtil {
-    static Deck deck = new Deck();
-    static Board board = new Board();
-    public static double[] simulate(Hand[] hands){
-        double[] res = new double[hands.length];
-        removeHands(hands);
-        deck.shuffle();
+    Board board;
+    int[] wins;
+    double[] res;
+    Hand[] hands;
 
+    public MonteCarloUtil(Hand[] hands){
+        this.board = new Board(hands, new Deck());
+        this.wins = new int[hands.length];
+        this.res = new double[hands.length];
+        this.hands = hands;
+    }
+
+    public double[] simulate(){
         for(int i = 0; i < 10000; i++){
-            drawBoard();
-            //evaluate the drawn board compared to the hands
-
+            board.drawBoard();
+            determineBestHand();
+            board.clearBoard();
         }
 
-
-        return null;
+        for(int i = 0; i < wins.length; i++){
+            System.out.println("Win: " + wins[i]);
+            res[i] = (double) wins[i] / 10000;
+        }
+        return res;
     }
-    public static void removeHands(Hand[] hands){
-        for(Hand h : hands){
-            for(Card c : h.getCards()){
-                deck.remove(c);
+    public void determineBestHand(){
+        int bestIdx = -1;
+        HandScore bestHand = null;
+        for(int j = 0; j < hands.length; j++){
+            if(bestIdx < 0){
+                bestIdx = j;
+                bestHand = bestFiveCardHandOfSeven(hands[j], board);
+            }else {
+                if(bestHand.compare(bestFiveCardHandOfSeven(hands[j], board)) < 1){
+                    bestIdx = j;
+                    bestHand = bestFiveCardHandOfSeven(hands[j], board);
+                }
             }
         }
-    }
-    public static void drawBoard(){
-        board = new Board();
-        for(int i = 0; i < board.size() ; i++){
-            board.add(deck.pop());
-        }
+        wins[bestIdx]++;
     }
 }

@@ -31,4 +31,18 @@ public class Deck extends Stack<Card> {
         this.clear();
         this.addAll(Arrays.asList(copy));
     }
+    public void partialShuffle(int cardsRemoved){
+        Random rand = new Random();
+        Card[] copy = this.toArray(new Card[0]);
+        int i = copy.length;
+        while (i > copy.length-cardsRemoved){
+            int r = rand.nextInt(0, i);
+            Card temp = copy[i-1];
+            copy[i-1] = copy[r];
+            copy[r] = temp;
+            i--;
+        }
+        this.clear();
+        this.addAll(Arrays.asList(copy));
+    }
 }
