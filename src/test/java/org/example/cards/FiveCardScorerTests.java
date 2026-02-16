@@ -20,8 +20,10 @@ public class FiveCardScorerTests {
 
         assertTrue(scorer.flush);
         assertEquals(CardRank.ACE.value(), scorer.straightHigh);
-        assertEquals(0, scorer.rankGroups.get(2).size());
         assertEquals(CardRank.ACE, scorer.rankGroups.get(1).get(0));
+        assertEquals(0, scorer.rankGroups.get(2).size());
+        assertEquals(0, scorer.rankGroups.get(3).size());
+        assertEquals(0, scorer.rankGroups.get(4).size());
 
     }
 
@@ -38,6 +40,10 @@ public class FiveCardScorerTests {
 
         assertTrue(scorer.flush);
         assertEquals(CardRank.FIVE.value(), scorer.straightHigh);
+        assertEquals(CardRank.ACE, scorer.rankGroups.get(1).get(0));
+        assertEquals(0, scorer.rankGroups.get(2).size());
+        assertEquals(0, scorer.rankGroups.get(3).size());
+        assertEquals(0, scorer.rankGroups.get(4).size());
     }
 
     @Test
@@ -53,6 +59,10 @@ public class FiveCardScorerTests {
 
         assertFalse(scorer.flush);
         assertEquals(CardRank.FIVE.value(), scorer.straightHigh);
+        assertEquals(CardRank.ACE, scorer.rankGroups.get(1).get(0));
+        assertEquals(0, scorer.rankGroups.get(2).size());
+        assertEquals(0, scorer.rankGroups.get(3).size());
+        assertEquals(0, scorer.rankGroups.get(4).size());
     }
 
     @Test
@@ -68,6 +78,10 @@ public class FiveCardScorerTests {
 
         assertTrue(scorer.flush);
         assertEquals(CardRank.KING.value(), scorer.straightHigh);
+        assertEquals(CardRank.KING, scorer.rankGroups.get(1).get(0));
+        assertEquals(0, scorer.rankGroups.get(2).size());
+        assertEquals(0, scorer.rankGroups.get(3).size());
+        assertEquals(0, scorer.rankGroups.get(4).size());
     }
 
     void NonStraightFlushTest(){
@@ -82,6 +96,10 @@ public class FiveCardScorerTests {
 
         assertTrue(scorer.flush);
         assertNotEquals(CardRank.ACE.value(), scorer.straightHigh); // should NOT be a straight
+        assertEquals(CardRank.ACE, scorer.rankGroups.get(1).get(0));
+        assertEquals(0, scorer.rankGroups.get(2).size());
+        assertEquals(0, scorer.rankGroups.get(3).size());
+        assertEquals(0, scorer.rankGroups.get(4).size());
     }
 
     @Test
@@ -97,6 +115,10 @@ public class FiveCardScorerTests {
 
         assertFalse(scorer.flush);
         assertEquals(CardRank.ACE.value(), scorer.straightHigh);
+        assertEquals(CardRank.ACE, scorer.rankGroups.get(1).get(0));
+        assertEquals(0, scorer.rankGroups.get(2).size());
+        assertEquals(0, scorer.rankGroups.get(3).size());
+        assertEquals(0, scorer.rankGroups.get(4).size());
     }
 
     @Test
@@ -112,6 +134,10 @@ public class FiveCardScorerTests {
 
         assertFalse(scorer.flush);
         assertEquals(CardRank.SIX.value(), scorer.straightHigh);
+        assertEquals(CardRank.SIX, scorer.rankGroups.get(1).get(0));
+        assertEquals(0, scorer.rankGroups.get(2).size());
+        assertEquals(0, scorer.rankGroups.get(3).size());
+        assertEquals(0, scorer.rankGroups.get(4).size());
     }
 
     @Test
@@ -128,6 +154,10 @@ public class FiveCardScorerTests {
         assertFalse(scorer.flush);
         assertNotEquals(CardRank.SIX.value(), scorer.straightHigh);
         assertNotEquals(CardRank.FIVE.value(), scorer.straightHigh);
+        assertEquals(CardRank.ACE, scorer.rankGroups.get(1).get(0));
+        assertEquals(0, scorer.rankGroups.get(2).size());
+        assertEquals(0, scorer.rankGroups.get(3).size());
+        assertEquals(0, scorer.rankGroups.get(4).size());
     }
 
     @Test
@@ -145,6 +175,10 @@ public class FiveCardScorerTests {
         // If your scorer uses 0 / -1 / null-like value for "no straight", swap this assert accordingly:
         assertNotEquals(CardRank.ACE.value(), scorer.straightHigh);
         assertNotEquals(CardRank.FIVE.value(), scorer.straightHigh);
+        assertEquals(CardRank.ACE, scorer.rankGroups.get(1).get(0));
+        assertEquals(0, scorer.rankGroups.get(2).size());
+        assertEquals(0, scorer.rankGroups.get(3).size());
+        assertEquals(0, scorer.rankGroups.get(4).size());
     }
 
     @Test
@@ -162,6 +196,10 @@ public class FiveCardScorerTests {
         assertFalse(scorer.flush);
         assertNotEquals(CardRank.ACE.value(), scorer.straightHigh);
         assertEquals(CardRank.JACK, scorer.rankGroups.get(2).get(0));
+        assertEquals(CardRank.ACE, scorer.rankGroups.get(1).get(0));
+        assertEquals(CardRank.JACK, scorer.rankGroups.get(2).get(0));
+        assertEquals(0, scorer.rankGroups.get(3).size());
+        assertEquals(0, scorer.rankGroups.get(4).size());
     }
 
     @Test
@@ -179,6 +217,10 @@ public class FiveCardScorerTests {
         assertFalse(scorer.flush);
         assertEquals(CardRank.FIVE.value(), scorer.straightHigh);
         assertNotEquals(CardRank.ACE.value(), scorer.straightHigh);
+        assertEquals(CardRank.ACE, scorer.rankGroups.get(1).get(0));
+        assertEquals(0, scorer.rankGroups.get(2).size());
+        assertEquals(0, scorer.rankGroups.get(3).size());
+        assertEquals(0, scorer.rankGroups.get(4).size());
     }
 
     @Test
@@ -195,5 +237,9 @@ public class FiveCardScorerTests {
 
         assertFalse(scorer.flush);
         assertEquals(CardRank.ACE.value(), scorer.straightHigh);
+        assertEquals(CardRank.ACE, scorer.rankGroups.get(1).get(0));
+        assertEquals(0, scorer.rankGroups.get(2).size());
+        assertEquals(0, scorer.rankGroups.get(3).size());
+        assertEquals(0, scorer.rankGroups.get(4).size());
     }
 }

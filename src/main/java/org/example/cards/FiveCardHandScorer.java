@@ -39,8 +39,7 @@ public class FiveCardHandScorer {
             rankGroups.get(entry.getValue()).add(entry.getKey());
         }
         for(List<CardRank> l : rankGroups){
-            l.sort(Comparator.comparingInt(CardRank::value));
-            l.sort(Comparator.reverseOrder());
+            l.sort(Comparator.comparingInt(CardRank::value).reversed());
         }
 
     }
